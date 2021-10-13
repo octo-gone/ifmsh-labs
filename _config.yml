@@ -1,0 +1,8 @@
+theme: jekyll-theme-cayman
+layout: default
+title: InformaticsFMSH
+post_dirs: false
+permalink: pretty
+lang: ru-RU
+description:
+  Курс информатики вечерней физико-математической школы при НИУ ВШЭ МИЭМ

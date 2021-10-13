@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="full" height="128" version="1.1" width="128" xmlns="http://www.w3.org/2000/svg"
+     xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs/>
+    <rect fill="#ffffff" height="100%" width="100%" x="0" y="0"/>
+    <polygon fill="#155799" points="128 0 128 64 64 0"
+             stroke="#000000" stroke-width="3"/>
+    <polygon fill="#c47179" points="0 0 64 0 0 64"
+             stroke="#000000" stroke-width="3"/>
+    <text font-weight="bold" font-size="46px" font-family="Courier" text-anchor="middle" x="64" y="45">I</text>
+    <text font-weight="bold" font-size="46px" font-family="Courier" text-anchor="middle" x="64" y="80">FM</text>
+    <text font-weight="bold" font-size="46px" font-family="Courier" text-anchor="middle" x="64" y="115">SH</text>
+    <rect fill="none" height="100%" stroke="#000000" stroke-width="6" width="100%" x="0" y="0"/>
+</svg>
