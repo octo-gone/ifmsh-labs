@@ -22,9 +22,11 @@ title: Лабораторные работы
 
 ## Доступные лабораторные работы
 
-- [Лабораторная работа 1][lab_1] 
-
+- [Лабораторная работа 1][lab_1]  
+...
+- [Лабораторная работа X][lab_X] 
 
 [index]: {{site.baseurl}}/index
 
 [lab_1]: {{site.baseurl}}/labs/lab-1
+[lab_X]: {{site.baseurl}}/labs/lab-x
