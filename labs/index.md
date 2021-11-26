@@ -24,7 +24,8 @@ title: Лабораторные работы
 
 - [Лабораторная работа 1][lab_1]  
 - [Лабораторная работа 2][lab_2]  
-- [Лабораторная работа 3][lab_3]  
+- [Лабораторная работа 3][lab_3]   
+- [Лабораторная работа 4][lab_4] 
 ...
 - [Лабораторная работа X][lab_X] 
 
@@ -33,4 +34,5 @@ title: Лабораторные работы
 [lab_1]: {{site.baseurl}}/labs/lab-1
 [lab_2]: {{site.baseurl}}/labs/lab-2
 [lab_3]: {{site.baseurl}}/labs/lab-3
+[lab_4]: {{site.baseurl}}/labs/lab-4
 [lab_X]: {{site.baseurl}}/labs/lab-x
