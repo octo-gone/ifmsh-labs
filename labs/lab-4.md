@@ -101,7 +101,7 @@ Output:
 3
 AUG CGU
 UGC
-CGU
+GCG
 ```
 
 **2 часть**  
