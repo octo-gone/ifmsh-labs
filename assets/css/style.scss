@@ -1,8 +1,9 @@
 ---
 ---
 
-$header-bg-color: #c47179;
-$section-headings-color: #c47179;
+$header-bg-color: #03343e;
+$section-headings-color: #03343e;
+$header-bg-color-secondary: #935b20;
 
 @import "{{ site.theme }}";
 
@@ -156,7 +157,7 @@ $section-headings-color: #c47179;
 
 
 @media print {
-  a[href^=http]:after {
+  a:not(a[href^="/resources"]):after {
     content: " <" attr(href) ">";
   }
   .img-small {
