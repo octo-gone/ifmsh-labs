@@ -32,7 +32,8 @@ title: Лабораторные работы
 
 ### 2 семестр
 
-- **Скоро**
+- [Лабораторная работа 5][lab_5] 
+- ...
 
 [index]: {{site.baseurl}}/index
 
@@ -40,4 +41,5 @@ title: Лабораторные работы
 [lab_2]: {{site.baseurl}}/labs/lab-2
 [lab_3]: {{site.baseurl}}/labs/lab-3
 [lab_4]: {{site.baseurl}}/labs/lab-4
+[lab_5]: {{site.baseurl}}/labs/lab-5
 [lab_X]: {{site.baseurl}}/labs/lab-x
