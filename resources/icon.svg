@@ -3,9 +3,9 @@
      xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink">
     <defs/>
     <rect fill="#ffffff" height="100%" width="100%" x="0" y="0"/>
-    <polygon fill="#155799" points="128 0 128 64 64 0"
+    <polygon fill="#03343e" points="128 0 128 64 64 0"
              stroke="#000000" stroke-width="3"/>
-    <polygon fill="#c47179" points="0 0 64 0 0 64"
+    <polygon fill="#935b20" points="0 0 64 0 0 64"
              stroke="#000000" stroke-width="3"/>
     <text font-weight="bold" font-size="46px" font-family="Courier" text-anchor="middle" x="64" y="45">I</text>
     <text font-weight="bold" font-size="46px" font-family="Courier" text-anchor="middle" x="64" y="80">FM</text>
