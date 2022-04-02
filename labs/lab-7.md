@@ -116,3 +116,187 @@ def decode_percent_encoding(d):
 
 <img src="{{site.baseurl}}/resources/labs/lab-7/01_nodes.jpg"/>
 
+Получение диаграммы:
+
+```python
+from xml.dom import minidom
+import base64
+import zlib
+from urllib import parse
+
+
+def decode_base64(d):
+    return base64.b64decode(d)
+
+
+def inflate(d):
+    return zlib.decompress(d, -15).decode()
+
+
+def decode_percent_encoding(d):
+    return parse.unquote(d)
+
+
+def load_structure(filename="scripts.drawio"):
+    file = minidom.parse(filename)
+    d = file.getElementsByTagName("diagram")[0]
+    data = d.firstChild.nodeValue
+
+    decoded_diagram = decode_percent_encoding(inflate(decode_base64(data)))
+
+    return minidom.parseString(decoded_diagram)
+```
+
+Выгрузка блоков и связей из диаграммы:
+
+```python
+def parse_diagram(d):
+    root = diagram.getElementsByTagName("root")[0]
+
+    links = []
+    for link in root.getElementsByTagName("mxCell"):
+
+        if link.getAttribute("id") in ["0", "1"]:
+            pass
+        elif link.parentNode == root:
+            link_data = {
+                "exitX": None,
+                "exitY": None,
+                "entryX": None,
+                "entryY": None
+            }
+
+            for style in str(link.getAttribute("style")).split(";"):
+                for key in link_data.keys():
+                    if style.startswith(key):
+                        link_data[key] = float(style.split("=")[-1])
+
+            link_data.update({
+                "id": link.getAttribute("id"),
+                "source": link.getAttribute("source"),
+                "target": link.getAttribute("target")
+            })
+
+            if None in link_data.values():
+                print(f"error {link_data['id']}")
+                continue
+
+            elif int(link_data["exitX"]) == 0:
+                tmp = link_data["source"]
+                link_data["source"] = link_data["target"]
+                link_data["target"] = tmp
+
+                tmp = link_data["exitY"]
+                link_data["exitY"] = link_data["entryY"]
+                link_data["entryY"] = tmp
+
+            link_data.pop("exitX")
+            link_data.pop("entryX")
+
+            links.append(link_data)
+
+    nodes = []
+    for node in diagram.getElementsByTagName("UserObject"):
+        inner_data = node.getElementsByTagName("mxCell")[0]
+
+        node_data = {
+            "id": node.getAttribute("id"),
+            "label": node.getAttribute("label"),
+            "name": None
+        }
+
+        for style_attribute in str(inner_data.getAttribute("style")).split(";"):
+            if style_attribute.startswith("syncNodeName"):
+                node_data["name"] = style_attribute.split("=")[-1]
+
+        if node_data["name"] is None:
+            continue
+
+        nodes.append(node_data)
+
+    return nodes, links
+```
+
+Пример структур данных для блоков:
+
+```python
+class Node:
+    ids = {}
+
+    def __init__(self, node_data):
+        Node.ids[node_data["id"]] = self
+        # 0 - not started
+        # 1 - working
+        # 2 - start in next iteration
+        # 3 - evaluated
+        self.state = 0
+        self.value = None
+        self.label = node_data["label"]
+        self.inputs = []  # <object Node>, y
+        self.outputs = []
+
+    def add_input(self, obj, y):
+        self.inputs.append((obj, y))
+
+    def add_output(self, obj, y):
+        self.outputs.append((obj, y))
+
+    def __str__(self):
+        return f"{self.__class__}: {self.state}"
+
+    def evaluate(self):
+        pass
+
+
+class NodeRun(Node):
+    def __init__(self, node_data):
+        super(NodeRun, self).__init__(node_data)
+        self.state = 2
+
+    def evaluate(self):
+        self.state = 3
+        for output, y in self.outputs:
+            if y == 0.5 and output.state != 1:
+                output.state = 2
+
+
+class NodeConstCtrl(Node):
+    def __init__(self, node_data):
+        super(NodeConstCtrl, self).__init__(node_data)
+
+
+class NodePrintCtrl(Node):
+    def __init__(self, node_data):
+        super(NodePrintCtrl, self).__init__(node_data)
+
+
+class NodeStop(Node):
+    def __init__(self, node_data):
+        super(NodeStop, self).__init__(node_data)
+```
+
+Пример программы:
+
+```python
+if __name__ == "__main__":
+    diagram = load_structure()
+    nodes, links = parse_diagram(diagram)
+
+    for node in nodes:
+
+        if node["name"] == "run":
+            n = NodeRun(node)
+
+        ...
+
+    for link in links:
+        source = Node.ids[link["source"]]
+        target = Node.ids[link["target"]]
+
+        source.add_output(target, link["exitY"])
+        target.add_input(source, link["entryY"])
+    
+    iter_max = 1000
+    for i in range(iter_max):
+        # здесь описывается работы программы на визуальном ЯП
+```
