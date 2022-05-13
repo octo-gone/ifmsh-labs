@@ -101,9 +101,6 @@ def main(space, start, end, dice_1, dice_2):
     pass
 ```
 
-[rep]: https://github.com/octo-gone/ifmsh-lab-spaceship
-[replit]: https://replit.com/
-
 [index]: {{site.baseurl}}/index
 [rep]: https://github.com/octo-gone/ifmsh-lab-spaceship
 [replit]: https://replit.com/
